@@ -23,25 +23,36 @@ const skillTl = gsap.timeline({
     trigger: '.section3',
     // markers: true,
     start: 'top 14%',
-    end: 'top top'
+    end: 'top top',
+    toggleActions: 'play none reverse none'
   }
 })
 skillTl.from('.section3 h2', {x: '0', scale: 6, duration: .6})
+       .from('.section3 p span', {y: '50vh', background: 'transparent', color: 'white', stagger: .2, delay: .1})
+       .to('.section3 p span', {y: '0', background: 'white', color: 'black', stagger: .2}, '<')
 
-const projectTl = gsap.timeline({
+const horizontalTl = gsap.timeline({
   scrollTrigger: {
     trigger: '.horizontal-sections',
     // markers: true,
     start: 'top top',
     scrub: true,
     pin: true,
-    end: 'bottom 60%'
+    end: 'bottom 40%'
   }
 })
-projectTl.from('.section3 p span', {y: '50vh', background: 'transparent', color: 'white', stagger: .2})
-         .to('.section3 p span', {y: '0', background: 'white', color: 'black', stagger: .2}, '<')
-         .to('.horizontal-sections', {xPercent: -50, duration: 10}, '-=1')
-         .from('.section4 .portfolio-item', {x: '100vw', duration: 1.6, stagger: .2}, '-=4')
+horizontalTl.to('.horizontal-sections', {xPercent: -50, duration: 10})
+
+const projectTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.horizontal-sections',
+    // markers: true,
+    start: 'center 50%',
+    end: 'bottom top',
+    toggleActions: 'play none reverse none'
+  }
+})
+projectTl.from('.section4 .portfolio-item', {x: '100vw', duration: 2, stagger: .2})
          .to('.section5', {backgroundPosition: '150% 90%'})
 
 const contactTtl = document.querySelector('.section5 h2')
@@ -56,7 +67,7 @@ contactTtlLetters.forEach(el => {
 const contactTl = gsap.timeline({
   scrollTrigger: {
     trigger: '.section5',
-    markers: true,
+    // markers: true,
     start: 'top top',
     scrub: true,
     pin: true,
